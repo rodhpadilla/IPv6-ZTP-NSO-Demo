@@ -1,0 +1,18 @@
+{
+  "name": "sw-example-01",
+  "serial": "EXAMPLE123",
+  "device_type": {
+    "model": "Catalyst 9300-24UX",
+    "manufacturer": { "name": "Cisco" }
+  },
+  "primary_ip6": { "address": "2001:db8:21::1212/64" },
+  "site": { "name": "example-site" },
+  "tags": [
+    { "name": "cisco-ios-cli-6.85", "slug": "cisco-ios-cli-6-85" }
+  ],
+  "local_context_data": {
+    "new-hostname": "sw-example-01",
+    "ipv6-prefix": "2001:db8:21::/64",
+    "activity-name": "onboard-sw-example-01"
+  }
+}

@@ -1,0 +1,39 @@
+# Example pipeline for the onboarding + provisioning core.
+# The pipeline is triggered with the device MAC as a variable ($DEVICE_MAC).
+# Copy to .gitlab-ci.yml and adapt to your runner and environment.
+
+image: python:3.9-slim
+
+stages:
+  - access-test
+  - onboarding
+  - provision
+  - test
+
+before_script:
+  - pip install -r requirements.txt
+
+access_test:
+  stage: access-test
+  script:
+    - echo "Check NSO is reachable before we start"
+    - robot --variable mac_addr:$DEVICE_MAC ./test/config_tests.robot || true
+
+nso_onboarding:
+  stage: onboarding
+  script:
+    - python3 ./scripts/onboard_example.py $DEVICE_MAC
+
+config_provision:
+  stage: provision
+  script:
+    - python3 ./scripts/provision_example.py $DEVICE_MAC
+
+config_test:
+  stage: test
+  script:
+    - robot --variable mac_addr:$DEVICE_MAC -d output ./test/config_tests.robot
+  artifacts:
+    when: always
+    paths:
+      - output

@@ -1,0 +1,20 @@
+# Local secrets and environment — never commit
+config.env
+*.env
+!config.example.env
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Robot Framework output
+output/
+log.html
+report.html
+output.xml
+
+# OS
+.DS_Store
+/.idea/
